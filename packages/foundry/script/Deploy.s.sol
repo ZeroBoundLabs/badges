@@ -2,6 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "../contracts/YourContract.sol";
+import "../contracts/HyperStaking.sol";
 import "./DeployHelpers.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
@@ -15,11 +16,29 @@ contract DeployScript is ScaffoldETHDeploy {
             );
         }
         vm.startBroadcast(deployerPrivateKey);
-        YourContract yourContract =
-            new YourContract(vm.addr(deployerPrivateKey));
+        YourContract yourContract = new YourContract(
+            vm.addr(deployerPrivateKey)
+        );
+        FakeHyperCertContract hyperCertContract = new FakeHyperCertContract();
+        HyperStaking hyperStaking = new HyperStaking(
+            vm.addr(hyperCertContract)
+        );
         console.logString(
             string.concat(
-                "YourContract deployed at: ", vm.toString(address(yourContract))
+                "FakeHyperCert deployed at: ",
+                vm.toString(address(hyperCertContract))
+            )
+        );
+        console.logString(
+            string.concat(
+                "YourContract deployed at: ",
+                vm.toString(address(yourContract))
+            )
+        );
+        console.logString(
+            string.concat(
+                "YourContract deployed at: ",
+                vm.toString(address(hyperStaking))
             )
         );
         vm.stopBroadcast();
