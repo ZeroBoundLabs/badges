@@ -1,1 +1,4 @@
-@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts
+@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
+# oz-upgradeable=lib/hypercerts/contracts/contracts/lib/openzeppelin-contracts-upgradeable/contracts/
+oz-upgradeable=/Users/james/code/hyperstaker-mono/lib/hypercerts/contracts/lib/openzeppelin-contracts-upgradeable/contracts/
+hypercerts-contracts/=/Users/james/code/hyperstaker-mono/lib/hypercerts/contracts/src/protocol/

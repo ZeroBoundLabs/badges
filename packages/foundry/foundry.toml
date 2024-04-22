@@ -38,3 +38,6 @@ line_length = 80
 multiline_func_header = "params_first"
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
+
+[default]
+solc_version = "0.8.17"

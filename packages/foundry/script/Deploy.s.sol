@@ -1,8 +1,9 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.16;
 
 import "../contracts/YourContract.sol";
 import "../contracts/HyperStaking.sol";
+import {HypercertMinter} from "hypercerts-contracts/HypercertMinter.sol";
 import "./DeployHelpers.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
@@ -19,28 +20,29 @@ contract DeployScript is ScaffoldETHDeploy {
         YourContract yourContract = new YourContract(
             vm.addr(deployerPrivateKey)
         );
-        FakeHyperCertContract hyperCertContract = new FakeHyperCertContract();
-        HyperStaking hyperStaking = new HyperStaking(
-            vm.addr(hyperCertContract)
-        );
-        console.logString(
-            string.concat(
-                "FakeHyperCert deployed at: ",
-                vm.toString(address(hyperCertContract))
-            )
-        );
         console.logString(
             string.concat(
                 "YourContract deployed at: ",
                 vm.toString(address(yourContract))
             )
         );
+        HypercertMinter hyperCertContract = new HypercertMinter();
+        HyperStaking hyperStaking = new HyperStaking(
+            address(hyperCertContract)
+        );
         console.logString(
             string.concat(
-                "YourContract deployed at: ",
+                "HyperCert deployed at: ",
+                vm.toString(address(hyperCertContract))
+            )
+        );
+        console.logString(
+            string.concat(
+                "HyperStaking deployed at: ",
                 vm.toString(address(hyperStaking))
             )
         );
+
         vm.stopBroadcast();
 
         /**
