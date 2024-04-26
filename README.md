@@ -1,4 +1,10 @@
-# 🏗 Scaffold-ETH 2
+<div align="center">
+<h1>
+<img src="./docs/images/unicorn.jpg" alt="Hyperstaker: unleash your project" />
+</h1>
+</div>
+
+# 🦄 Hyperstaker
 
 <h4 align="center">
   <a href="https://docs.scaffoldeth.io">Documentation</a> |
