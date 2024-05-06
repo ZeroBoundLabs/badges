@@ -1,61 +1,28 @@
-import "@rainbow-me/rainbowkit/styles.css";
-import { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
 import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
-import { ThemeProvider } from "~~/components/ThemeProvider";
-import "~~/styles/globals.css";
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : `http://localhost:${process.env.PORT || 3000}`;
-const imageUrl = `${baseUrl}/thumbnail.jpg`;
+//const inter = Inter({ subsets: ["latin"] });
 
-const title = "Scaffold-ETH 2 App";
-const titleTemplate = "%s | Scaffold-ETH 2";
-const description = "Built with 🏗 Scaffold-ETH 2";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
-  title: {
-    default: title,
-    template: titleTemplate,
-  },
-  description,
-  openGraph: {
-    title: {
-      default: title,
-      template: titleTemplate,
-    },
-    description,
-    images: [
-      {
-        url: imageUrl,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: [imageUrl],
-    title: {
-      default: title,
-      template: titleTemplate,
-    },
-    description,
-  },
-  icons: {
-    icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
-  },
-};
-
-const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en">
+      <head>
+        {/* <ColorSchemeScript /> */}
+        <link rel="shortcut icon" href="/favicon.png" />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no" />
+      </head>
       <body>
-        <ThemeProvider enableSystem>
+        <MantineProvider defaultColorScheme="dark">
           <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
-        </ThemeProvider>
+        </MantineProvider>
       </body>
     </html>
   );
-};
-
-export default ScaffoldEthApp;
+}
